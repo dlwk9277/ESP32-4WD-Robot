@@ -194,17 +194,11 @@ void setupMotors() {
   pinMode(R2_IN3, OUTPUT);
   pinMode(R2_IN4, OUTPUT);
   
-  // Setup PWM channels
-  ledcSetup(PWM_CH_L1, PWM_FREQ, PWM_RES);
-  ledcSetup(PWM_CH_L2, PWM_FREQ, PWM_RES);
-  ledcSetup(PWM_CH_R1, PWM_FREQ, PWM_RES);
-  ledcSetup(PWM_CH_R2, PWM_FREQ, PWM_RES);
-  
-  // Attach PWM channels to pins
-  ledcAttachPin(L1_ENA, PWM_CH_L1);
-  ledcAttachPin(L1_ENB, PWM_CH_L2);
-  ledcAttachPin(R2_ENA, PWM_CH_R1);
-  ledcAttachPin(R2_ENB, PWM_CH_R2);
+  // Setup PWM channels (NEW ESP32 API)
+  ledcAttach(L1_ENA, PWM_FREQ, PWM_RES);
+  ledcAttach(L1_ENB, PWM_FREQ, PWM_RES);
+  ledcAttach(R2_ENA, PWM_FREQ, PWM_RES);
+  ledcAttach(R2_ENB, PWM_FREQ, PWM_RES);
   
   // Initialize motors stopped
   stopMotors();
